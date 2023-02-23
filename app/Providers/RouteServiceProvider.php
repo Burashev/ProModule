@@ -19,6 +19,17 @@ class RouteServiceProvider extends ServiceProvider
      */
     public const HOME = '/home';
 
+    protected function loadDomainRoutes() {
+        $routes = [];
+
+        foreach (glob(base_path("routes/domains/*.php")) as $filename) {
+            $routes[] = $filename;
+        }
+
+        Route::middleware('web')
+            ->group($routes);
+    }
+
     /**
      * Define your route model bindings, pattern filters, and other route configuration.
      */
@@ -27,12 +38,10 @@ class RouteServiceProvider extends ServiceProvider
         $this->configureRateLimiting();
 
         $this->routes(function () {
-            Route::middleware('api')
-                ->prefix('api')
-                ->group(base_path('routes/api.php'));
+            $this->loadDomainRoutes();
 
             Route::middleware('web')
-                ->group(base_path('routes/web.php'));
+                ->group(base_path("routes/common.php"));
         });
     }
 

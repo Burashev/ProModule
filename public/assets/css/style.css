@@ -1,0 +1,63 @@
+@import "imports/fonts.css";
+@import "imports/colors.css";
+@import "imports/header.css";
+@import "imports/auth.css";
+
+
+/* COMMON STYLES START */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Noto Sans", sans-serif;
+}
+
+body {
+    background-color: #e9e9f1;
+}
+
+.container {
+    max-width: 1300px;
+    width: 100%;
+    margin: 0 auto;
+    padding: 0 15px;
+}
+
+.btn {
+    padding: 13px 15px;
+    text-decoration: none;
+    border: none;
+    background-color: var(--primary);
+    color: white;
+    border-radius: 8px;
+    min-width: 130px;
+    text-align: center;
+    display: inline-block;
+    letter-spacing: 0.4px;
+    cursor: pointer;
+    transition: background-color ease .3s;
+    font-size: 1rem;
+}
+
+.btn:hover {
+    background-color: var(--primary-darker);
+}
+
+.input-group {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.input-group+.input-group {
+    margin-top: 20px;
+}
+
+input {
+    padding: 13px 15px;
+    border-radius: 8px;
+    border: 2px solid #ccc;
+    font-size: 1rem;
+}
+/* COMMON STYLES END */
+

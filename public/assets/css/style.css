@@ -53,11 +53,21 @@ body {
     margin-top: 20px;
 }
 
-input {
+input, select {
     padding: 13px 15px;
     border-radius: 8px;
     border: 2px solid #ccc;
     font-size: 1rem;
+}
+
+input.error, select.error {
+    border-color: red;
+}
+
+.input-error {
+    color: red;
+    font-size: 0.9rem;
+    font-weight: 500;
 }
 /* COMMON STYLES END */
 

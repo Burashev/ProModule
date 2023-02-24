@@ -16,7 +16,7 @@
                 </li>
             </ul>
             <div class="header__auth-menu">
-                <a href="#" class="btn">Вступить</a>
+                <a href="{{route('register')}}" class="btn">Вступить</a>
             </div>
         </div>
     </div>

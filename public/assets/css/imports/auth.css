@@ -1,0 +1,38 @@
+.auth-section {
+    width: 100vw;
+    height: calc(100vh - 85px); /* - header height */
+}
+
+.auth-section .container {
+    height: 100%;
+}
+
+.auth-section__body {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+}
+
+.auth-section__form-wrapper {
+    background-color: #fff;
+    border-radius: 7px;
+    padding: 20px;
+    max-width: 600px;
+    width: 100%;
+}
+
+.auth-section__form-wrapper__title {
+    text-align: center;
+    margin-bottom: 40px;
+    font-size: 1.9rem;
+}
+
+.auth-section__form-wrapper form button {
+    margin-top: 30px;
+}
+
+.email-verify form .btn {
+    margin: 0 auto;
+    display: block;
+}

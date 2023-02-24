@@ -23,14 +23,14 @@ class RegisterPostRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'email' => ['email:dns', 'required'],
+            'email' => ['email:dns', 'required', 'unique:users,email'],
             'name' => ['required'],
             'sex' => ['required'],
             'city' => ['required'],
             'institution' => ['required'],
             'institution_type' => ['required'],
             'password' => ['required', 'confirmed', Password::default()],
-            'role_id' => ['required', 'integer', 'digits_between:1,2']
+            'role_id' => ['required', 'integer', 'between:1,2']
         ];
     }
 }

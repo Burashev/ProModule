@@ -5,15 +5,15 @@ namespace App\Http\Controllers\Auth;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\LoginPostRequest;
 use App\Http\Requests\RegisterPostRequest;
-use App\Models\User;
+use Domains\Auth\Actions\RegisterNewUserAction;
+use Domains\Auth\DTOs\NewUserBioDTO;
+use Domains\Auth\DTOs\NewUserDTO;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Facades\Hash;
 
 class AuthController extends Controller
 {
@@ -40,25 +40,11 @@ class AuthController extends Controller
         return view('domains.auth.register');
     }
 
-    public function registerPost(RegisterPostRequest $request): RedirectResponse
+    public function registerPost(RegisterPostRequest $request, RegisterNewUserAction $action): RedirectResponse
     {
-        DB::transaction(function () use ($request) {
-            $user = User::query()->create([
-                'email' => $request->email,
-                'password' => Hash::make($request->password),
-                'role_id' => $request->role_id
-            ]);
+        $user = $action(NewUserDTO::fromRequest($request), NewUserBioDTO::fromRequest($request));
 
-            $user->bio()->create($request->only([
-                'name',
-                'sex',
-                'city',
-                'institution',
-                'institution_type',
-            ]));
-
-            event(new Registered($user));
-        });
+        event(new Registered($user));
 
         return redirect()->route('login');
     }

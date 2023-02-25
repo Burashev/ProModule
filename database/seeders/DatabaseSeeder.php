@@ -3,8 +3,8 @@
 namespace Database\Seeders;
 
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
-use App\Models\User;
-use App\Models\UserBio;
+use Domains\Shared\Models\User;
+use Domains\Shared\Models\UserBio;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder

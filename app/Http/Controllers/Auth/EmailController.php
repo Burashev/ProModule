@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
+use Domains\Auth\Actions\SendEmailVerificationToUserAction;
 use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Contracts\View\View;
@@ -23,9 +24,9 @@ class EmailController extends Controller
         return redirect()->route('home');
     }
 
-    public function sendVerificationPost(): RedirectResponse
+    public function sendVerificationPost(SendEmailVerificationToUserAction $action): RedirectResponse
     {
-        auth()->user()->sendEmailVerificationNotification();
+        $action(auth()->user());
 
         return redirect()->route('home');
     }

@@ -2,11 +2,11 @@
 
 namespace Database\Factories;
 
-use App\Models\UserBio;
+use Domains\Shared\Models\UserBio;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
- * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\UserBio>
+ * @extends \Illuminate\Database\Eloquent\Factories\Factory<\Domains\Shared\Models\UserBio>
  */
 class UserBioFactory extends Factory
 {

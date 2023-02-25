@@ -4,7 +4,7 @@ declare(strict_types=1);
 namespace Tests\Feature\App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Auth\AuthController;
-use App\Models\User;
+use Domains\Shared\Models\User;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Auth\Listeners\SendEmailVerificationNotification;
 use Illuminate\Auth\Notifications\VerifyEmail;

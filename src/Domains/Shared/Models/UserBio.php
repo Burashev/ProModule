@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Models;
+namespace Domains\Shared\Models;
 
 use Database\Factories\UserBioFactory;
 use Illuminate\Database\Eloquent\Factories\HasFactory;

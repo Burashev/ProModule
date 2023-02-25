@@ -183,4 +183,16 @@ final class AuthControllerTest extends TestCase
         Notification::assertSentTo($user, VerifyEmail::class);
     }
 
+    public function test_the_user_logout_success()
+    {
+        $this->user->setAttribute('remember_token', 'token');
+
+        $response = $this
+            ->actingAs($this->user)
+            ->delete(action([AuthController::class, 'logout']));
+
+        $this->assertGuest();
+
+        $response->assertRedirect(route('home'));
+    }
 }

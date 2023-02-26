@@ -10,6 +10,8 @@
 </head>
 <body>
 @include('includes.header')
+@include('includes.notification')
+
 <section class="auth-section">
     <div class="container">
         <div class="auth-section__body">

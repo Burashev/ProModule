@@ -10,6 +10,7 @@
 </head>
 <body>
     @include('includes.header')
+    @include('includes.notification')
 
     @yield('content')
 </body>

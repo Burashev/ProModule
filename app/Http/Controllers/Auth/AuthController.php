@@ -25,6 +25,8 @@ class AuthController extends Controller
     public function loginPost(LoginPostRequest $request): RedirectResponse
     {
         if (!Auth::attempt($request->only(['email', 'password']))) {
+            flash()->error('Ошибка! Неверные данные');
+
             return back()->withErrors([
                 'email' => 'The provided credentials do not match our records.',
             ])->onlyInput('email');
@@ -32,6 +34,7 @@ class AuthController extends Controller
 
         $request->session()->regenerate();
 
+        flash()->info('Успешная авторизация');
         return redirect()->route('home');
     }
 
@@ -46,6 +49,8 @@ class AuthController extends Controller
 
         event(new Registered($user));
 
+        flash()->info('Успешная регистрация');
+
         return redirect()->route('login');
     }
 
@@ -56,6 +61,8 @@ class AuthController extends Controller
         session()->invalidate();
 
         session()->regenerateToken();
+
+        flash()->info('Вы вышли из системы');
 
         return redirect()->route('home');
     }

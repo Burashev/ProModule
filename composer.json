@@ -29,7 +29,8 @@
             "Database\\Seeders\\": "database/seeders/",
             "Domains\\": "src/Domains/",
             "Support\\": "src/Support/"
-        }
+        },
+        "files": ["src/Support/helpers.php"]
     },
     "autoload-dev": {
         "psr-4": {

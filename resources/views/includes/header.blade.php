@@ -5,15 +5,11 @@
                 <h2>{{env('APP_NAME')}}</h2>
             </div>
             <ul class="header__menu">
-                <li>
-                    <a href="#" class="active">Menu 1</a>
-                </li>
-                <li>
-                    <a href="#">Menu 2</a>
-                </li>
-                <li>
-                    <a href="#">Menu 3</a>
-                </li>
+                @foreach($menu->all() as $item)
+                    <li>
+                        <a href="{{$item->url}}" @class(['active' => $item->isActive()])>{{$item->title}}</a>
+                    </li>
+                @endforeach
             </ul>
             <div class="header__auth-menu">
                 <a href="{{route('register')}}" class="btn">Вступить</a>

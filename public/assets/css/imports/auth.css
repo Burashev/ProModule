@@ -1,6 +1,6 @@
 .auth-section {
     width: 100vw;
-    height: calc(100vh - 85px); /* - header height */
+    padding: 20px 0;
 }
 
 .auth-section .container {
@@ -8,6 +8,7 @@
 }
 
 .auth-section__body {
+    min-height: calc(100vh - 85px - 20px); /* - header height - padding  */
     display: flex;
     align-items: center;
     justify-content: center;

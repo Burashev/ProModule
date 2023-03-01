@@ -199,7 +199,8 @@ return [
         /*
          * Custom Service Providers
          */
-        \App\Providers\ViewServiceProvider::class
+        \App\Providers\ViewServiceProvider::class,
+        \App\Providers\DomainServiceProvider::class
     ],
 
     /*

@@ -44,30 +44,28 @@
                     </div>
                 </div>
                 <div class="catalog-section__filters">
-                    <div class="filter-group">
-                        <label>Фильтр</label>
-                        <div class="filter-group__body">
-                            <input type="text" placeholder="test">
-                            <input type="text" placeholder="test">
-                        </div>
-                    </div>
-                    <div class="filter-group">
-                        <label>Фильтр</label>
-                        <div class="filter-group__body">
-                            <input type="text" placeholder="test">
-                        </div>
-                    </div>
-                    <div class="filter-group">
-                        <label>Фильтр</label>
-                        <div class="filter-group__body">
-                            <select name="#" id="#">
-                                <option value="#">filter</option>
-                                <option value="#">filter</option>
-                                <option value="#">filter</option>
-                            </select>
-                        </div>
-                    </div>
-                    <button class="btn">Применить</button>
+                    <form action="#">
+                        @foreach(filters('catalog') as $filter)
+                            {!! $filter !!}
+                        @endforeach
+{{--                        <div class="filter-group">--}}
+{{--                            <label>Фильтр</label>--}}
+{{--                            <div class="filter-group__body">--}}
+{{--                                <input type="text" placeholder="test">--}}
+{{--                            </div>--}}
+{{--                        </div>--}}
+{{--                        <div class="filter-group">--}}
+{{--                            <label>Фильтр</label>--}}
+{{--                            <div class="filter-group__body">--}}
+{{--                                <select name="#" id="#">--}}
+{{--                                    <option value="#">filter</option>--}}
+{{--                                    <option value="#">filter</option>--}}
+{{--                                    <option value="#">filter</option>--}}
+{{--                                </select>--}}
+{{--                            </div>--}}
+{{--                        </div>--}}
+                        <button class="btn" type="submit">Применить</button>
+                    </form>
                 </div>
             </div>
         </div>

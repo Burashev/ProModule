@@ -10,10 +10,11 @@ class CatalogController extends Controller
 {
     public function index(Request $request)
     {
-        $modules = Module::query()->with([
-            'skill',
-            'user.bio',
-        ])->get();
+        $modules = Module::query()
+            ->with([
+                'skill',
+                'user.bio',
+            ])->filtered()->get();
 
         return view('domains.catalog.index', compact('modules'));
     }

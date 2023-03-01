@@ -70,9 +70,13 @@
     padding: 20px;
     background-color: #fff;
     border-radius: 7px;
+}
+
+.catalog-section__filters form {
     display: flex;
     flex-direction: column;
     gap: 20px;
+    height: 100%;
 }
 
 .catalog-section__filters .btn {
@@ -90,7 +94,12 @@
     position: relative;
 }
 
-.filter-group__body:has(input + input):before {
+.filter-group__body-checkboxes {
+    flex-direction: column;
+    gap: 10px;
+}
+
+.filter-group__body:has(input:not([type="checkbox"]) + input:not([type="checkbox"])):before {
     content: '';
     display: block;
     position: absolute;
@@ -102,6 +111,11 @@
     background-color: #3d3d3d;
 }
 
-.filter-group__body :where(input, select) {
+.filter-group__body :where(input:not([type="checkbox"]), select) {
     width: 100%;
+}
+
+.checkbox__group {
+    display: flex;
+    gap: 10px;
 }

@@ -3,6 +3,7 @@
 namespace Domains\Catalog\Models;
 
 use Database\Factories\ModuleFactory;
+use Domains\Catalog\QueryBuilders\ModuleQueryBuilder;
 use Domains\File\Models\File;
 use Domains\Shared\Models\User;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -25,6 +26,11 @@ class Module extends Model
     protected static function newFactory(): ModuleFactory
     {
         return new ModuleFactory();
+    }
+
+    public function newEloquentBuilder($query): ModuleQueryBuilder
+    {
+        return new ModuleQueryBuilder($query);
     }
 
     public function mediaFiles(): BelongsToMany

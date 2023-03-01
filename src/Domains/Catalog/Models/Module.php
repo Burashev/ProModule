@@ -1,0 +1,49 @@
+<?php
+
+namespace Domains\Catalog\Models;
+
+use Database\Factories\ModuleFactory;
+use Domains\File\Models\File;
+use Domains\Shared\Models\User;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
+
+class Module extends Model
+{
+    use HasFactory;
+
+    protected $fillable = [
+        'title',
+        'slug',
+        'skill_id',
+        'user_id',
+        'author_id'
+    ];
+
+    protected static function newFactory(): ModuleFactory
+    {
+        return new ModuleFactory();
+    }
+
+    public function mediaFiles(): BelongsToMany
+    {
+        return $this->belongsToMany(File::class, 'module_media_files');
+    }
+
+    public function skill(): BelongsTo
+    {
+        return $this->belongsTo(Skill::class);
+    }
+
+    public function file(): BelongsTo
+    {
+        return $this->belongsTo(File::class);
+    }
+
+    public function user(): BelongsTo
+    {
+        return $this->belongsTo(User::class);
+    }
+}

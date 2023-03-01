@@ -2,10 +2,13 @@
 
 namespace Database\Seeders;
 
-// use Illuminate\Database\Console\Seeds\WithoutModelEvents;
+use Domains\Catalog\Models\Module;
+use Domains\Catalog\Models\Skill;
+use Domains\File\Support\FileManager;
 use Domains\Shared\Models\User;
 use Domains\Shared\Models\UserBio;
 use Illuminate\Database\Seeder;
+use Illuminate\Http\UploadedFile;
 
 class DatabaseSeeder extends Seeder
 {
@@ -19,8 +22,37 @@ class DatabaseSeeder extends Seeder
             ->each(
                 function (User $user) {
                     $user->bio()->save(UserBio::factory()->makeOne());
+                    $user->skills()->saveMany(Skill::factory(fake()->numberBetween(1, 3))->make());
                 }
             );
 
+        $user = User::query()->create([
+            'email' => 'shburashev@ya.ru',
+            'password' => bcrypt('12341234'),
+            'role_id' => 3
+        ]);
+        $user->bio()->save(UserBio::factory()->makeOne());
+
+        $fileManager = new FileManager($user);
+
+        $file = $fileManager->upload($this->loadFile(base_path('tests/Fixtures/modules/tasks/1.docx')));
+        $mediaFile = $fileManager->upload($this->loadFile(base_path('tests/Fixtures/modules/mediafiles/mediafiles.zip')));
+
+        Module::factory(10)
+            ->for($file)
+            ->create()
+            ->each(fn(Module $module) => $module->mediaFiles()->attach($mediaFile->getKey()));
+    }
+
+    public function loadFile(string $path): UploadedFile
+    {
+        $explodedPath = explode('/', $path);
+
+        return new UploadedFile(
+            $path,
+            end($explodedPath),
+            mime_content_type($path),
+            filesize($path),
+        );
     }
 }

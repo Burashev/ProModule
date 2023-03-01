@@ -3,9 +3,14 @@
 namespace Domains\Shared\Models;
 
 use Database\Factories\UserFactory;
+use Domains\Catalog\Models\Module;
+use Domains\Catalog\Models\Skill;
+use Domains\File\Models\File;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
@@ -33,5 +38,17 @@ class User extends Authenticatable implements MustVerifyEmail
     public function bio(): HasOne
     {
         return $this->hasOne(UserBio::class, 'user_id', 'id');
+    }
+
+    public function skills(): BelongsToMany {
+        return $this->belongsToMany(Skill::class);
+    }
+
+    public function files(): HasMany {
+        return $this->hasMany(File::class);
+    }
+
+    public function modules(): HasMany {
+        return $this->hasMany(Module::class);
     }
 }

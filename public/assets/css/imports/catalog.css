@@ -79,8 +79,11 @@
     height: 100%;
 }
 
-.catalog-section__filters .btn {
+.catalog-section__filters__buttons {
     margin-top: auto;
+    display: flex;
+    gap: 10px;
+    flex-direction: column;
 }
 
 .filter-group label {

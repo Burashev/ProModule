@@ -33,7 +33,6 @@ class ModuleFactory extends Factory
 
         return [
             'title' => fake()->word(),
-            'slug' => fake()->word(),
             'user_id' => $user->id,
             'skill_id' => $skill,
         ];

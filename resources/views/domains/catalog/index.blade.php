@@ -34,13 +34,13 @@
                         </tbody>
                     </table>
                     <div class="catalog-section__paginate">
-                        <a href="#" class="active">1</a>
-                        <a href="#">2</a>
-                        <a href="#">3</a>
-                        <a href="#">4</a>
-                        <a href="#">5</a>
-                        <a href="#">6</a>
-                        <a href="#">7</a>
+                        @for($i = 1; $i <= $pages; $i++)
+                            <a href="{{$modules->url($i)}}"
+                                @class([
+                                    'active' => $modules->currentPage() === $i
+                                ])
+                            >{{$i}}</a>
+                        @endfor
                     </div>
                 </div>
                 <div class="catalog-section__filters">

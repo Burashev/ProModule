@@ -38,7 +38,7 @@ class DatabaseSeeder extends Seeder
         $file = $fileManager->upload($this->loadFile(base_path('tests/Fixtures/modules/tasks/1.docx')));
         $mediaFile = $fileManager->upload($this->loadFile(base_path('tests/Fixtures/modules/mediafiles/mediafiles.zip')));
 
-        Module::factory(10)
+        Module::factory(100)
             ->for($file)
             ->create()
             ->each(fn(Module $module) => $module->mediaFiles()->attach($mediaFile->getKey()));

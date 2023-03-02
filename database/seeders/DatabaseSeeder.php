@@ -2,9 +2,9 @@
 
 namespace Database\Seeders;
 
-use Domains\Catalog\Models\Module;
 use Domains\Catalog\Models\Skill;
 use Domains\File\Support\FileManager;
+use Domains\Module\Models\Module;
 use Domains\Shared\Models\User;
 use Domains\Shared\Models\UserBio;
 use Illuminate\Database\Seeder;

@@ -17,7 +17,7 @@ return new class extends Migration
                 ->constrained()
                 ->cascadeOnDelete()
                 ->cascadeOnUpdate();
-            $table->foreignIdFor(\Domains\Catalog\Models\Module::class)
+            $table->foreignIdFor(\Domains\Module\Models\Module::class)
                 ->constrained()
                 ->cascadeOnDelete()
                 ->cascadeOnUpdate();

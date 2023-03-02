@@ -1,8 +1,9 @@
 <?php
 
-namespace Domains\Catalog\Models;
+namespace Domains\Module\Models;
 
 use Database\Factories\ModuleFactory;
+use Domains\Catalog\Models\Skill;
 use Domains\Catalog\QueryBuilders\ModuleQueryBuilder;
 use Domains\File\Models\File;
 use Domains\Shared\Models\User;

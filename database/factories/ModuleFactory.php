@@ -2,14 +2,14 @@
 
 namespace Database\Factories;
 
-use Domains\Catalog\Models\Module;
 use Domains\Catalog\Models\Skill;
+use Domains\Module\Models\Module;
 use Domains\Shared\Models\User;
 use Domains\Shared\Models\UserBio;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
- * @extends \Illuminate\Database\Eloquent\Factories\Factory<\Domains\Catalog\Models\Module>
+ * @extends \Illuminate\Database\Eloquent\Factories\Factory<\Domains\Module\Models\Module>
  */
 class ModuleFactory extends Factory
 {

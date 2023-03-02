@@ -3,9 +3,9 @@
 namespace Domains\Shared\Models;
 
 use Database\Factories\UserFactory;
-use Domains\Catalog\Models\Module;
 use Domains\Catalog\Models\Skill;
 use Domains\File\Models\File;
+use Domains\Module\Models\Module;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;

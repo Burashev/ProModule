@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\Catalog;
 
 use App\Http\Controllers\Controller;
-use Domains\Catalog\Models\Module;
+use Domains\Module\Models\Module;
 
 class CatalogController extends Controller
 {

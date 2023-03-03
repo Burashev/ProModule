@@ -5,6 +5,7 @@
 @import "imports/notification.css";
 @import "imports/section.css";
 @import "imports/catalog.css";
+@import "imports/module.css";
 
 
 /* COMMON STYLES START */
@@ -143,5 +144,12 @@ input.error, select.error {
     font-weight: 500;
 }
 
+.module-difficulty {
+    padding: 5px 10px;
+    color: #ffb800;
+    background-color: #fff5df;
+    border-radius: 7px;
+    font-weight: 600;
+}
 /* COMMON STYLES END */
 

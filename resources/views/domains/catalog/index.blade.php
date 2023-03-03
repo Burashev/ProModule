@@ -25,7 +25,7 @@
                         @foreach($modules as $module)
                             <tr>
                                 <td>{{$module->getKey()}}</td>
-                                <td>{{$module->title}}</td>
+                                <td><a href="{{route('module', $module->slug)}}">{{$module->title}}</a></td>
                                 <td>{{$module->skill->title}}</td>
                                 <td>{{$module->user->bio->name}}</td>
                                 <td>Теги</td>
@@ -48,22 +48,6 @@
                         @foreach(filters('catalog') as $filter)
                             {!! $filter !!}
                         @endforeach
-                        {{--                        <div class="filter-group">--}}
-                        {{--                            <label>Фильтр</label>--}}
-                        {{--                            <div class="filter-group__body">--}}
-                        {{--                                <input type="text" placeholder="test">--}}
-                        {{--                            </div>--}}
-                        {{--                        </div>--}}
-                        {{--                        <div class="filter-group">--}}
-                        {{--                            <label>Фильтр</label>--}}
-                        {{--                            <div class="filter-group__body">--}}
-                        {{--                                <select name="#" id="#">--}}
-                        {{--                                    <option value="#">filter</option>--}}
-                        {{--                                    <option value="#">filter</option>--}}
-                        {{--                                    <option value="#">filter</option>--}}
-                        {{--                                </select>--}}
-                        {{--                            </div>--}}
-                        {{--                        </div>--}}
                         <div class="catalog-section__filters__buttons">
                             <button class="btn" type="submit">Применить</button>
                             <button class="btn outlined" type="reset">Сбросить</button>

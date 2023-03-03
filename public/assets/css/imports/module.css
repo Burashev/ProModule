@@ -1,0 +1,117 @@
+.module-section .section__body {
+    display: grid;
+    grid-template-columns: 5fr 2fr;
+    gap: 20px;
+    margin-top: 50px;
+}
+
+.module-section__header-info {
+    display: flex;
+    gap: 30px;
+    margin-top: 20px;
+    align-items: center;
+}
+
+.module-section__header-info__tag {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+    color: #9b9b9b;
+    font-weight: 500;
+}
+
+.module-section__header-info__tag svg {
+    fill: none;
+}
+
+.module-section__header-info__tag a {
+    color: currentColor;
+    text-decoration: none;
+}
+
+.module-section__header-info__tag a:hover {
+    text-decoration: underline;
+}
+
+.module-section__module-author svg {
+    fill: currentColor;
+    height: 24px;
+}
+
+.module-section__module-clock svg {
+    stroke: currentColor;
+    height: 21px;
+}
+
+.module-section__task-wrapper {
+    border: 2px solid #ccc;
+}
+
+.module-section__right {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.module-section__send {
+    background-color: #fff;
+    border-radius: 7px;
+}
+
+.module-section__send-form {
+    padding: 20px;
+}
+
+.module-section__send-form .btn {
+    width: 100%;
+}
+
+.module-section__send-form .btn input[type="file"] {
+    display: none;
+}
+
+.module-section__chat-wrapper {
+    height: 500px;
+    display: flex;
+    flex-direction: column;
+    border-top: 1px solid #ccc;
+    padding: 20px;
+}
+
+.module-section__chat {
+    height: 100%;
+}
+
+.module-section__chat-form {
+    display: flex;
+    gap: 10px;
+}
+
+.module-section__chat-form input {
+    width: 100%;
+}
+
+.module-section__chat-form .btn {
+    height: 50px;
+    width: 50px;
+    min-width: auto;
+    padding: 7px;
+}
+
+.module-section__chat-form .btn svg {
+    fill: white;
+    height: 100%;
+}
+
+.module-section__mediafiles-block {
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 7px;
+}
+
+.module-section__mediafiles {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-top: 10px;
+}

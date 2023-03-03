@@ -20,7 +20,7 @@ final class FileManager
     public function __construct(?User $user = null)
     {
         $this->storage = Storage::disk('files');
-        $this->user = $user ?? auth()->user();
+        $this->user = ($user && $user->exists) ? $user : auth()->user();
 
         throw_if(is_null($this->user), new \DomainException('User can not be null'));
     }
@@ -42,7 +42,8 @@ final class FileManager
         return $this->createModelRecord($title, $type, $size, $path);
     }
 
-    public function checkExtension(string $extension): bool {
+    public function checkExtension(string $extension): bool
+    {
         return in_array($extension, config('file.available_extensions'));
     }
 
@@ -67,6 +68,10 @@ final class FileManager
     public function downloadFile(FileLink $fileLink): StreamedResponse|bool
     {
         if ($fileLink->is_downloaded) {
+            return false;
+        }
+
+        if ($this->user->getKey() !== $fileLink->user_id) {
             return false;
         }
 

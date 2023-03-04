@@ -12,7 +12,15 @@
                 @endforeach
             </ul>
             <div class="header__auth-menu">
-                <a href="{{route('register')}}" class="btn">Вступить</a>
+                @guest
+                    <a href="{{route('register')}}" class="btn">Вступить</a>
+                @elseauth
+                    <form action="{{route('logout')}}" method="post">
+                        @csrf
+                        @method('delete')
+                        <button type="submit" class="btn">Выйти</button>
+                    </form>
+                @endguest
             </div>
         </div>
     </div>

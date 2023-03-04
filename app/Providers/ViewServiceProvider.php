@@ -27,8 +27,8 @@ class ViewServiceProvider extends ServiceProvider
                 'menu',
                 (new Menu())
                     ->addItem(new MenuItem("Главная", route("home")))
-                    ->addItem(new MenuItem("Каталог", route("catalog")))
-                    ->addItem(new MenuItem("Вход", route("login")))
+                    ->addItemIf(auth()->check(), new MenuItem("Каталог", route("catalog")))
+                    ->addItemIf(auth()->guest(), new MenuItem("Вход", route("login")))
             );
         });
     }

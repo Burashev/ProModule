@@ -2,6 +2,7 @@
 
 namespace App\Http\Requests;
 
+use Domains\Shared\Enums\RolesEnum;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Validation\Rules\Password;
 
@@ -22,6 +23,9 @@ class RegisterPostRequest extends FormRequest
      */
     public function rules(): array
     {
+        $competitorId = RolesEnum::COMPETITOR_ID->value;
+        $expertId = RolesEnum::EXPERT_ID->value;
+
         return [
             'email' => ['email:dns', 'required', 'unique:users,email'],
             'name' => ['required'],
@@ -30,7 +34,7 @@ class RegisterPostRequest extends FormRequest
             'institution' => ['required'],
             'institution_type' => ['required'],
             'password' => ['required', 'confirmed', Password::default()],
-            'role_id' => ['required', 'integer', 'between:1,2']
+            'role_id' => ['required', 'integer', "between:{$competitorId},{$expertId}"]
         ];
     }
 }

@@ -3,6 +3,7 @@ declare(strict_types=1);
 
 namespace Domains\Catalog\Filters;
 
+use Domains\Shared\Enums\RolesEnum;
 use Domains\Shared\Filters\AbstractFilter;
 use Domains\Shared\Models\User;
 use Illuminate\Contracts\Database\Query\Builder;
@@ -31,7 +32,7 @@ final class AuthorFilter extends AbstractFilter
         return User::query()
             ->select(['id'])
             ->with(['bio'])
-            ->where('role_id', 2)
+            ->where('role_id', RolesEnum::EXPERT_ID->value)
             ->get()
             ->pluck("bio.name", "id")
             ->toArray();

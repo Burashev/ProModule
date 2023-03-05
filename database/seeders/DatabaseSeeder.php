@@ -5,6 +5,7 @@ namespace Database\Seeders;
 use Domains\Catalog\Models\Skill;
 use Domains\File\Support\FileManager;
 use Domains\Module\Models\Module;
+use Domains\Shared\Enums\RolesEnum;
 use Domains\Shared\Models\User;
 use Domains\Shared\Models\UserBio;
 use Illuminate\Database\Seeder;
@@ -29,7 +30,7 @@ class DatabaseSeeder extends Seeder
         $user = User::query()->create([
             'email' => 'shburashev@ya.ru',
             'password' => bcrypt('12341234'),
-            'role_id' => 3
+            'role_id' => RolesEnum::ADMINISTRATOR_ID->value
         ]);
         $user->bio()->save(UserBio::factory()->makeOne());
 

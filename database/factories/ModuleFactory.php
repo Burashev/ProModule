@@ -4,6 +4,7 @@ namespace Database\Factories;
 
 use Domains\Catalog\Models\Skill;
 use Domains\Module\Models\Module;
+use Domains\Shared\Enums\RolesEnum;
 use Domains\Shared\Models\User;
 use Domains\Shared\Models\UserBio;
 use Illuminate\Database\Eloquent\Factories\Factory;
@@ -25,7 +26,7 @@ class ModuleFactory extends Factory
 
         $user = User::factory()
             ->createOne([
-                'role_id' => 2
+                'role_id' => RolesEnum::EXPERT_ID->value
             ]);
 
         $user->bio()->save(UserBio::factory()->makeOne());

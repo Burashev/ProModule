@@ -1,7 +1,7 @@
 const forms = document.querySelectorAll('form');
 
 forms.forEach(form => {
-    form.querySelector('button[type="reset"]').addEventListener("click", function (e) {
+    form.querySelector('button[type="reset"]')?.addEventListener("click", function (e) {
         e.preventDefault();
         form.reset();
         // сбрасываем select2

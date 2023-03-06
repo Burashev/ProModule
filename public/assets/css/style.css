@@ -143,13 +143,5 @@ input.error, select.error {
     font-size: 0.9rem;
     font-weight: 500;
 }
-
-.module-difficulty {
-    padding: 5px 10px;
-    color: #ffb800;
-    background-color: #fff5df;
-    border-radius: 7px;
-    font-weight: 600;
-}
 /* COMMON STYLES END */
 

@@ -5,9 +5,11 @@ namespace Database\Seeders;
 use Domains\Catalog\Models\Skill;
 use Domains\File\Support\FileManager;
 use Domains\Module\Models\Module;
+use Domains\Module\Models\Tag;
 use Domains\Shared\Enums\RolesEnum;
 use Domains\Shared\Models\User;
 use Domains\Shared\Models\UserBio;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Seeder;
 use Illuminate\Http\UploadedFile;
 
@@ -39,10 +41,17 @@ class DatabaseSeeder extends Seeder
         $file = $fileManager->upload($this->loadFile(base_path('tests/Fixtures/modules/tasks/1.docx')));
         $mediaFile = $fileManager->upload($this->loadFile(base_path('tests/Fixtures/modules/mediafiles/mediafiles.zip')));
 
-        Module::factory(100)
+        $tags = Tag::query()->whereHas('tagType', function (Builder $builder) {
+            return $builder->where('name', '=', 'difficulty');
+        })->get();
+
+        Module::factory(10)
             ->for($file)
+            ->hasAttached($mediaFile, [], 'mediaFiles')
             ->create()
-            ->each(fn(Module $module) => $module->mediaFiles()->attach($mediaFile->getKey()));
+            ->each(function (Module $module) use ($tags) {
+                $module->tags()->attach($tags->random());
+            });
     }
 
     public function loadFile(string $path): UploadedFile

@@ -28,7 +28,9 @@
                                 <td><a href="{{route('module', $module->slug)}}">{{$module->title}}</a></td>
                                 <td>{{$module->skill->title}}</td>
                                 <td>{{$module->user->bio->name}}</td>
-                                <td>Теги</td>
+                                <td>
+                                    @each('domains.catalog.partials.tag', $module->tags, 'tag')
+                                </td>
                             </tr>
                         @endforeach
                         </tbody>

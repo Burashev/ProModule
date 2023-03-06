@@ -13,6 +13,7 @@ class CatalogController extends Controller
             ->with([
                 'skill',
                 'user.bio',
+                'tags'
             ])
             ->filtered()
             ->paginate(10)

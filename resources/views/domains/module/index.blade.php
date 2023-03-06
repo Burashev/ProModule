@@ -24,9 +24,7 @@
             <div class="section__header">
                 <h1>Модуль: {{ $module->title }}</h1>
                 <div class="module-section__header-info">
-                    <p class="module-difficulty">
-                        Средняя
-                    </p>
+                    @each('domains.module.partials.tag', $module->tags, 'tag')
                     <p class="module-section__module-author module-section__header-info__tag">
                         <svg xmlns="http://www.w3.org/2000/svg"
                              viewBox="0 0 32 32">

@@ -1,0 +1,31 @@
+
+.btn {
+    padding: 11px 15px;
+    text-decoration: none;
+    border: 2px solid var(--primary);
+    background-color: var(--primary);
+    color: white;
+    border-radius: 8px;
+    min-width: 130px;
+    text-align: center;
+    display: inline-block;
+    letter-spacing: 0.4px;
+    cursor: pointer;
+    transition: background-color ease .3s, border-color ease .3s;
+    font-size: 1rem;
+}
+
+.btn.outlined {
+    background-color: transparent;
+    color: var(--primary);
+}
+
+.btn.outlined:hover {
+    background-color: var(--primary);
+    color: white;
+}
+
+.btn:not(.outlined):hover {
+    background-color: var(--primary-darker);
+    border-color: var(--primary-darker)
+}

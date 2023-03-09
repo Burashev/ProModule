@@ -9,7 +9,7 @@ final class ModuleQueryBuilder extends Builder
 {
     public function filtered(): self {
         foreach (filters('catalog') as $filter) {
-            $this->query = $filter->apply($this->query);
+            $this->setQuery($filter->apply(clone $this)->getQuery());
         }
 
         return $this;

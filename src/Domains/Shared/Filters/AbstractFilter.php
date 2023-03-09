@@ -3,7 +3,7 @@ declare(strict_types=1);
 
 namespace Domains\Shared\Filters;
 
-use Illuminate\Contracts\Database\Query\Builder;
+use Illuminate\Contracts\Database\Eloquent\Builder;
 
 abstract class AbstractFilter
 {
@@ -13,7 +13,7 @@ abstract class AbstractFilter
 
     abstract public function apply(Builder $builder): Builder;
 
-    abstract public function values(): array;
+    abstract public function values(): array|\Countable;
 
     abstract public function view(): string;
 
@@ -31,8 +31,8 @@ abstract class AbstractFilter
         );
     }
 
-    public function multipleSelectSelected($value): bool {
-        return collect($this->requestValue())->contains($value);
+    public function multipleSelectSelected($value, $index = null): bool {
+        return collect($this->requestValue($index))->contains($value);
     }
 
     public function name(string $index = null): string

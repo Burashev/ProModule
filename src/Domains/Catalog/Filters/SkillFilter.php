@@ -5,7 +5,7 @@ namespace Domains\Catalog\Filters;
 
 use Domains\Catalog\Models\Skill;
 use Domains\Shared\Filters\AbstractFilter;
-use Illuminate\Contracts\Database\Query\Builder;
+use Illuminate\Contracts\Database\Eloquent\Builder;
 
 final class SkillFilter extends AbstractFilter
 {

@@ -6,7 +6,7 @@ namespace Domains\Catalog\Filters;
 use Domains\Shared\Enums\RolesEnum;
 use Domains\Shared\Filters\AbstractFilter;
 use Domains\Shared\Models\User;
-use Illuminate\Contracts\Database\Query\Builder;
+use Illuminate\Contracts\Database\Eloquent\Builder;
 
 final class AuthorFilter extends AbstractFilter
 {

@@ -2,10 +2,19 @@
 
 namespace App\Providers;
 
+use Domains\Catalog\Models\Observers\SkillObserver;
+use Domains\Catalog\Models\Skill;
+use Domains\Module\Models\Observers\TagObserver;
+use Domains\Module\Models\Observers\TagTypeObserver;
+use Domains\Module\Models\Tag;
+use Domains\Module\Models\TagType;
+use Domains\Shared\Models\Observers\UserBioObserver;
+use Domains\Shared\Models\Observers\UserObserver;
+use Domains\Shared\Models\User;
+use Domains\Shared\Models\UserBio;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Auth\Listeners\SendEmailVerificationNotification;
 use Illuminate\Foundation\Support\Providers\EventServiceProvider as ServiceProvider;
-use Illuminate\Support\Facades\Event;
 
 class EventServiceProvider extends ServiceProvider
 {
@@ -25,7 +34,11 @@ class EventServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
-        //
+        User::observe(UserObserver::class);
+        UserBio::observe(UserBioObserver::class);
+        Skill::observe(SkillObserver::class);
+        Tag::observe(TagObserver::class);
+        TagType::observe(TagTypeObserver::class);
     }
 
     /**

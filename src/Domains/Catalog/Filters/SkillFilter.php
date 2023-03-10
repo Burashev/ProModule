@@ -6,6 +6,7 @@ namespace Domains\Catalog\Filters;
 use Domains\Catalog\Models\Skill;
 use Domains\Shared\Filters\AbstractFilter;
 use Illuminate\Contracts\Database\Eloquent\Builder;
+use Illuminate\Support\Facades\Cache;
 
 final class SkillFilter extends AbstractFilter
 {
@@ -28,11 +29,13 @@ final class SkillFilter extends AbstractFilter
 
     public function values(): array
     {
-        return Skill::query()
-            ->select(['id', 'title'])
-            ->get()
-            ->pluck("title", "id")
-            ->toArray();
+        return Cache::tags('skills')->rememberForever('skills', function () {
+            return Skill::query()
+                ->select(['id', 'title'])
+                ->get()
+                ->pluck("title", "id")
+                ->toArray();
+        });
     }
 
     public function view(): string

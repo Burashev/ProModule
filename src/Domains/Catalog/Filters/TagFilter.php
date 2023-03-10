@@ -6,6 +6,7 @@ namespace Domains\Catalog\Filters;
 use Domains\Module\Models\TagType;
 use Domains\Shared\Filters\AbstractFilter;
 use Illuminate\Contracts\Database\Eloquent\Builder;
+use Illuminate\Support\Facades\Cache;
 
 final class TagFilter extends AbstractFilter
 {
@@ -34,11 +35,13 @@ final class TagFilter extends AbstractFilter
 
     public function values(): array|\Countable
     {
-        return TagType::query()
-            ->select(['id', 'name', 'title'])
-            ->with(['tags'])
-            ->where('is_filtered', true)
-            ->get();
+        return Cache::tags('tag_types')->rememberForever('filtered_tag_types', function () {
+            return TagType::query()
+                ->select(['id', 'name', 'title'])
+                ->with(['tags'])
+                ->where('is_filtered', true)
+                ->get();
+        });
     }
 
     public function view(): string

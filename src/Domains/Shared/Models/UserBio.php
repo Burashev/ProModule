@@ -5,6 +5,7 @@ namespace Domains\Shared\Models;
 use Database\Factories\UserBioFactory;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class UserBio extends Model
 {
@@ -24,5 +25,9 @@ class UserBio extends Model
     protected static function newFactory(): UserBioFactory
     {
         return new UserBioFactory();
+    }
+
+    public function user(): BelongsTo {
+        return $this->belongsTo(User::class);
     }
 }

@@ -21,4 +21,6 @@ Route::middleware('auth')->group(function () {
     Route::get('/email/verify/{id}/{hash}', [EmailController::class, 'verifyHandler'])->name('verification.verify');
 
     Route::post('/email/verification-notification', [EmailController::class, 'sendVerificationPost'])->middleware('throttle:6,1')->name('verification.send');
+
+    Route::get('/active', ActiveController::class)->name('active');
 });

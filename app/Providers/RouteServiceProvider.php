@@ -19,14 +19,15 @@ class RouteServiceProvider extends ServiceProvider
      */
     public const HOME = '/';
 
-    protected function loadDomainRoutes() {
+    protected function loadDomainRoutes()
+    {
         $routes = [];
 
         foreach (glob(base_path("routes/domains/*.php")) as $filename) {
             $routes[] = $filename;
         }
 
-        Route::middleware('web')
+        Route::middleware(['web', 'web_authenticated'])
             ->group($routes);
     }
 

@@ -1,10 +1,11 @@
 <?php
 
+use App\Http\Controllers\Auth\ActiveController;
 use App\Http\Controllers\Auth\AuthController;
 use App\Http\Controllers\Auth\EmailController;
 use Illuminate\Support\Facades\Route;
 
-Route::middleware('guest')->group(function () {
+Route::middleware('guest')->withoutMiddleware(['web_authenticated'])->group(function () {
     Route::get('/login', [AuthController::class, 'login'])->name('login');
     Route::get('/register', [AuthController::class, 'register'])->name('register');
 
@@ -12,8 +13,7 @@ Route::middleware('guest')->group(function () {
     Route::post('/register', [AuthController::class, 'registerPost'])->name('registerPost');
 });
 
-Route::middleware('auth')->group(function () {
-
+Route::withoutMiddleware(['activated', 'verified'])->group(function () {
     Route::delete('/logout', [AuthController::class, 'logout'])->name('logout');
 
     Route::get('/email/verify', [EmailController::class, 'verify'])->name('verification.notice');

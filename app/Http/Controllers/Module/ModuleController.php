@@ -7,11 +7,19 @@ use Domains\Module\Models\Module;
 use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Contracts\View\View;
+use Illuminate\Http\RedirectResponse;
+use Illuminate\Support\Facades\Gate;
 
 class ModuleController extends Controller
 {
-    public function index(Module $module): Factory|View|Application
+    public function index(Module $module): Factory|View|Application|RedirectResponse
     {
+        if (Gate::denies('show', $module)) {
+            flash()->info('У вас нет доступа к данному модулю');
+
+            return redirect()->route('catalog');
+        }
+
         $fileLink = $module->file->link;
 
         $module->load([

@@ -23,7 +23,8 @@ class UserFactory extends Factory
             'email' => fake()->unique()->safeEmail(),
             'email_verified_at' => now(),
             'password' => bcrypt('password'),
-            'role_id' => fake()->numberBetween(1, 2)
+            'role_id' => fake()->numberBetween(1, 2),
+            'activated_at' => now()
         ];
     }
 }

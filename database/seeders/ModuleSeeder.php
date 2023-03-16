@@ -19,11 +19,13 @@ class ModuleSeeder extends Seeder
      */
     public function run(): void
     {
-        $user = User::query()->create([
-            'email' => 'shburashev@ya.ru',
-            'password' => bcrypt('12341234'),
-            'role_id' => RolesEnum::ADMINISTRATOR_ID->value
-        ]);
+        $user = User::factory()
+            ->createOne([
+                'email' => 'shburashev@ya.ru',
+                'password' => bcrypt('12341234'),
+                'role_id' => RolesEnum::ADMINISTRATOR_ID->value
+            ]);
+
         $user->bio()->save(UserBio::factory()->makeOne());
 
         $fileManager = new FileManager($user);

@@ -6,6 +6,7 @@ use Database\Factories\UserFactory;
 use Domains\Catalog\Models\Skill;
 use Domains\File\Models\File;
 use Domains\Module\Models\Module;
+use Domains\Shared\Enums\RolesEnum;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -28,6 +29,10 @@ class User extends Authenticatable implements MustVerifyEmail
         'password',
         'activated_at',
         'role_id'
+    ];
+
+    protected $casts = [
+        'role_id' => RolesEnum::class
     ];
 
     protected static function newFactory(): UserFactory

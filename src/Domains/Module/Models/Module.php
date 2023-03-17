@@ -6,11 +6,13 @@ use Database\Factories\ModuleFactory;
 use Domains\Catalog\Models\Skill;
 use Domains\Catalog\QueryBuilders\ModuleQueryBuilder;
 use Domains\File\Models\File;
+use Domains\File\Support\FileManager;
 use Domains\Shared\Models\User;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
+use Illuminate\Http\UploadedFile;
 use Support\Traits\HasSlug;
 
 /**
@@ -38,6 +40,31 @@ class Module extends Model
         return new ModuleQueryBuilder($query);
     }
 
+    /**
+     * @param array<UploadedFile> $mediaFiles
+     */
+    public function uploadMediaFiles(array $mediaFiles): void
+    {
+        $fm = new FileManager();
+
+        $files = [];
+
+        foreach ($mediaFiles as $file) {
+            $files[] = $fm->upload($file);
+        }
+
+        $this->mediaFiles()->saveMany($files);
+    }
+
+    public function uploadFile(UploadedFile $taskFile): void
+    {
+        $fm = new FileManager();
+
+        $file = $fm->upload($taskFile);
+
+        $this->file()->associate($file);
+    }
+
     public function mediaFiles(): BelongsToMany
     {
         return $this->belongsToMany(File::class, 'module_media_files');
@@ -58,7 +85,8 @@ class Module extends Model
         return $this->belongsTo(User::class);
     }
 
-    public function tags(): BelongsToMany {
+    public function tags(): BelongsToMany
+    {
         return $this->belongsToMany(Tag::class);
     }
 }

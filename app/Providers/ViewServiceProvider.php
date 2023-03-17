@@ -28,6 +28,9 @@ class ViewServiceProvider extends ServiceProvider
                 (new Menu())
                     ->addItem(new MenuItem("Главная", route("home")))
                     ->addItemIf(auth()->check(), new MenuItem("Каталог", route("catalog")))
+                    ->addItemIf(
+                        auth()->user()?->role_id->isAdministrator() || auth()->user()?->role_id->isExpert(),
+                        new MenuItem("Создание модуля", route("module.create")))
                     ->addItemIf(auth()->guest(), new MenuItem("Вход", route("login")))
             );
         });

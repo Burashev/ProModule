@@ -6,12 +6,15 @@ namespace Domains\Module\Actions;
 use Domains\Module\DTOs\NewModuleDTO;
 use Domains\Module\Models\Module;
 use Domains\Shared\Models\User;
+use Illuminate\Support\Facades\DB;
 
 final class CreateNewModule
 {
     public function __invoke(NewModuleDTO $newModuleDTO, ?User $user = null): Module
     {
         if (is_null($user)) $user = auth()->user();
+
+        DB::beginTransaction();
 
         $module = Module::query()->make([
             'title' => $newModuleDTO->title,
@@ -23,6 +26,10 @@ final class CreateNewModule
         $module->save();
 
         $module->uploadMediaFiles($newModuleDTO->media_files);
+
+        $module->tags()->attach($newModuleDTO->tag_ids);
+
+        DB::commit();
 
         return $module;
     }

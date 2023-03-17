@@ -52,7 +52,31 @@
                 <p class="input-error">{{$message}}</p>
                 @enderror
             </div>
+            <div class="input-group">
+                <label>Теги</label>
+                <select name="tag_ids[]" id="tags_select" multiple>
+                    @foreach($tagTypes as $tagType)
+                        <optgroup label="{{$tagType->title}}">
+                            @foreach($tagType->tags as $tag)
+                                <option value="{{$tag->id}}">{{$tag->title}}</option>
+                            @endforeach
+                        </optgroup>
+                    @endforeach
+                </select>
+                @error('tag_ids.*')
+                <p class="input-error">{{$message}}</p>
+                @enderror
+            </div>
             <button class="btn" type="submit">Создать</button>
         </form>
     </div>
+
+    <script type="text/javascript">
+
+        $("#tags_select").select2({
+            width: '100%',
+            placeholder: "Выберите теги",
+            allowClear: true
+        });
+    </script>
 @endsection

@@ -27,6 +27,8 @@ class CreateModulePostRequest extends FormRequest
             'task_file' => "required|file|max:10000|mimes:docx,doc",
             'media_files' => 'required|array',
             'media_files.*' => 'file|max:10000|mimes:zip,rar',
+            'tags' => 'nullable|array',
+            'tags.*' => 'exists:tags,id'
         ];
     }
 }

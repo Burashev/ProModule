@@ -13,18 +13,20 @@ final readonly class NewModuleDTO
      * @param string $skill_id
      * @param UploadedFile $task_file
      * @param array<UploadedFile> $media_files
+     * @param array<string> $tag_ids
      */
     public function __construct(
-        public string     $title,
-        public string     $skill_id,
-        public UploadedFile     $task_file,
-        public array     $media_files,
+        public string       $title,
+        public string       $skill_id,
+        public UploadedFile $task_file,
+        public array        $media_files,
+        public array        $tag_ids
     )
     {
     }
 
     public static function fromRequest(Request $request): self
     {
-        return new self(...$request->only('title', 'skill_id', 'task_file', 'media_files'));
+        return new self(...$request->only('title', 'skill_id', 'task_file', 'media_files', 'tag_ids'));
     }
 }

@@ -29,7 +29,7 @@
     font-size: 1.9rem;
 }
 
-.auth-section__form-wrapper form button {
+.auth-section__form-wrapper form button[type="submit"] {
     margin-top: 30px;
 }
 

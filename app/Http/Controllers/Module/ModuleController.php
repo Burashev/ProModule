@@ -8,6 +8,7 @@ use Domains\Catalog\Models\Skill;
 use Domains\Module\Actions\CreateNewModule;
 use Domains\Module\DTOs\NewModuleDTO;
 use Domains\Module\Models\Module;
+use Domains\Module\Models\TagType;
 use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Contracts\View\View;
@@ -39,10 +40,15 @@ class ModuleController extends Controller
         $skills = auth()->user()->role_id->isAdministrator() ?
             Skill::all() : auth()->user()->skills;
 
-        return view('domains.module.create', compact('skills'));
+        $tagTypes = TagType::query()
+            ->with('tags')
+            ->get();
+
+        return view('domains.module.create', compact('skills', 'tagTypes'));
     }
 
-    public function createPost(CreateModulePostRequest $request, CreateNewModule $action) {
+    public function createPost(CreateModulePostRequest $request, CreateNewModule $action)
+    {
         $module = $action(NewModuleDTO::fromRequest($request));
 
         flash()->info('Модуль успешно создан!');

@@ -7,6 +7,7 @@ use Domains\Catalog\Models\Skill;
 use Domains\Catalog\QueryBuilders\ModuleQueryBuilder;
 use Domains\File\Models\File;
 use Domains\File\Support\FileManager;
+use Domains\Module\Casts\ModuleTimeCast;
 use Domains\Shared\Models\User;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
@@ -27,7 +28,13 @@ class Module extends Model
         'slug',
         'skill_id',
         'user_id',
-        'author_id'
+        'author_id',
+        'short_description',
+        'time'
+    ];
+
+    protected $casts = [
+        'time' => ModuleTimeCast::class
     ];
 
     protected static function newFactory(): ModuleFactory

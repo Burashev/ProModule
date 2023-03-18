@@ -36,6 +36,8 @@ class ModuleFactory extends Factory
             'title' => fake()->word(),
             'user_id' => $user->id,
             'skill_id' => $skill,
+            'time' => fake()->numberBetween(15, 220),
+            'short_description' => fake()->words(10, true)
         ];
     }
 }

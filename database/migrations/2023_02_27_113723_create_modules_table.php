@@ -16,6 +16,8 @@ return new class extends Migration
 
             $table->string('title');
             $table->string('slug')->unique();
+            $table->integer('time');
+            $table->string('short_description')->nullable();
 
             $table->foreignIdFor(\Domains\Catalog\Models\Skill::class)
                 ->constrained()

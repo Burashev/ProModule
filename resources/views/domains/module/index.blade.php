@@ -42,7 +42,7 @@
                             <path d="M12 7L12 11.5L12 11.5196C12 11.8197 12.15 12.1 12.3998 12.2665V12.2665L15 14"
                                   stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
                         </svg>
-                        <span>2 часа</span>
+                        <span>{{$module->time}}</span>
                     </p>
                 </div>
             </div>

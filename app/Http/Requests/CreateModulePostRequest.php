@@ -23,6 +23,7 @@ class CreateModulePostRequest extends FormRequest
     {
         return [
             'title' => 'required|string',
+            'time' =>  'required|integer|min:0',
             'skill_id' => 'required|exists:skills,id',
             'task_file' => "required|file|max:10000|mimes:docx,doc",
             'media_files' => 'required|array',

@@ -16,6 +16,14 @@
                 @enderror
             </div>
             <div class="input-group">
+                <label>Время выполнения в минутах</label>
+                <input type="number" placeholder="120" name="time" value="{{old('time')}}" required min="0"
+                    @class(['error' => $errors->has('time')])>
+                @error('time')
+                <p class="input-error">{{$message}}</p>
+                @enderror
+            </div>
+            <div class="input-group">
                 <label>Компетенция</label>
                 <select
                     name="skill_id"

@@ -5,11 +5,13 @@
 @import "imports/components/buttons.css";
 @import "imports/components/inputs.css";
 @import "imports/components/notification.css";
+@import "imports/components/table.css";
 
 @import "imports/domains/auth.css";
 @import "imports/domains/catalog.css";
 @import "imports/domains/module.css";
 @import "imports/domains/section.css";
+@import "imports/domains/admin.css";
 
 
 /* COMMON STYLES START */

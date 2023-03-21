@@ -35,7 +35,7 @@
                         @endforeach
                         </tbody>
                     </table>
-                    <div class="catalog-section__paginate">
+                    <div class="paginate">
                         @for($i = 1; $i <= $pages; $i++)
                             <a href="{{$modules->url($i)}}"
                                 @class([

@@ -4,68 +4,6 @@
     gap: 30px;
 }
 
-.catalog-section__paginate {
-    display: flex;
-    gap: 5px;
-    justify-content: center;
-    margin-top: 20px;
-    background-color: #fff;
-    border-radius: 7px;
-    padding: 10px;
-}
-
-.catalog-section__paginate a {
-    display: flex;
-    width: 36px;
-    height: 36px;
-    color: #424242;
-    align-items: center;
-    justify-content: center;
-    text-decoration: none;
-    border-radius: 7px;
-    font-weight: 500;
-}
-
-.catalog-section__paginate a.active {
-    background-color: #0b24e833;
-    border: 2px solid var(--primary);
-}
-
-.table {
-    width: 100%;
-    border-collapse: collapse;
-}
-
-.table tr :where(th:first-child, td:first-child) {
-    padding-left: 10px;
-    padding-right: 10px;
-}
-
-.table thead tr th{
-    border-bottom: 2px solid #ccc;
-    text-align: left;
-    color: #424242;
-    font-weight: 600;
-    padding-bottom: 10px;
-}
-
-.table tbody tr:nth-child(even) td:first-child {
-    border-radius: 7px 0 0 7px;
-}
-
-.table tbody tr:nth-child(even) td:last-child {
-    border-radius: 0 7px 7px 0;
-}
-
-.table tbody tr:nth-child(even) {
-    background-color: rgb(255, 255, 255);
-}
-
-.table tbody tr td {
-    padding-top: 20px;
-    padding-bottom: 20px;
-}
-
 .catalog-section__filters {
     padding: 20px;
     background-color: #fff;

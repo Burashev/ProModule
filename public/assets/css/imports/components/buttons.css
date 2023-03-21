@@ -1,4 +1,3 @@
-
 .btn {
     padding: 11px 15px;
     text-decoration: none;
@@ -28,4 +27,9 @@
 .btn:not(.outlined):hover {
     background-color: var(--primary-darker);
     border-color: var(--primary-darker)
+}
+
+.btn-icon {
+    min-width: auto;
+    padding: 7px;
 }

@@ -9,6 +9,7 @@ use Domains\Module\Models\Module;
 use Domains\Shared\Enums\RolesEnum;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasMany;
@@ -38,6 +39,17 @@ class User extends Authenticatable implements MustVerifyEmail
     protected static function newFactory(): UserFactory
     {
         return new UserFactory();
+    }
+
+    public function status(): Attribute {
+        return Attribute::make(
+            get: function () {
+                return match (true) {
+                    is_null($this->activated_at) => 'Не подтвержден',
+                    default => 'Подтвержден',
+                };
+            }
+        );
     }
 
     public function bio(): HasOne

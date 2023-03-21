@@ -22,16 +22,27 @@ class ViewServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
-        View::composer('*', function ($view) {
+        View::composer('layouts.*', function (\Illuminate\View\View $view) {
+            $user = auth()->user();
+
             $view->with(
                 'menu',
                 (new Menu())
                     ->addItem(new MenuItem("Главная", route("home")))
                     ->addItemIf(auth()->check(), new MenuItem("Каталог", route("catalog")))
                     ->addItemIf(
-                        auth()->user()?->role_id->isAdministrator() || auth()->user()?->role_id->isExpert(),
-                        new MenuItem("Создание модуля", route("module.create")))
+                        $user?->role_id->isAdministrator() || $user?->role_id->isExpert(),
+                        new MenuItem("Создание модуля", route("module.create"))
+                    )
                     ->addItemIf(auth()->guest(), new MenuItem("Вход", route("login")))
+            );
+        });
+
+        View::composer('layouts.admin', function (\Illuminate\View\View $view) {
+            $view->with(
+                'adminMenu',
+                (new Menu())
+                    ->addItem(new MenuItem("Пользователи", route("admin.users")))
             );
         });
     }

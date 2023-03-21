@@ -19,6 +19,7 @@ final class CreateNewModule
         $module = Module::query()->make([
             'title' => $newModuleDTO->title,
             'skill_id' => $newModuleDTO->skill_id,
+            'time' => $newModuleDTO->time,
             'user_id' => $user->getKey()
         ]);
 

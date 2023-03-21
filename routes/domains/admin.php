@@ -1,6 +1,7 @@
 <?php
 declare(strict_types=1);
 
+use App\Http\Controllers\Admin\ModulesController;
 use App\Http\Controllers\Admin\UsersController;
 use Domains\Shared\Enums\RolesEnum;
 use Illuminate\Support\Facades\Route;
@@ -13,18 +14,38 @@ Route::middleware("roles:{$adminRoleId}")
     ->group(function () {
         Route::redirect('/', '/admin/users');
 
-        Route::get('/users', [UsersController::class, 'index'])
-            ->name('users');
+        Route::prefix('/users')
+            ->group(function () {
+                Route::get('/', [UsersController::class, 'index'])
+                    ->name('users');
 
-        Route::get('/users/create', [UsersController::class, 'create'])
-            ->name('users.create');
+                Route::get('/create', [UsersController::class, 'create'])
+                    ->name('users.create');
 
-        Route::post('/users/create', [UsersController::class, 'createPost'])
-            ->name('users.createPost');
+                Route::post('/create', [UsersController::class, 'createPost'])
+                    ->name('users.createPost');
 
-        Route::post('/users/{user:id}/activate', [UsersController::class, 'activatePost'])
-            ->name('users.activatePost');
+                Route::post('/{user:id}/activate', [UsersController::class, 'activatePost'])
+                    ->name('users.activatePost');
 
-        Route::delete('/users/{user:id}', [UsersController::class, 'delete'])
-            ->name('users.delete');
+                Route::delete('/{user:id}', [UsersController::class, 'delete'])
+                    ->name('users.delete');
+            });
+
+        Route::prefix('/modules')
+            ->group(function () {
+                Route::get('/', [ModulesController::class, 'index'])
+                    ->name('modules');
+
+                Route::get('/create', [ModulesController::class, 'create'])
+                    ->name('modules.create');
+
+                Route::post('/create', [ModulesController::class, 'createPost'])
+                    ->name('modules.createPost');
+
+                Route::delete('/{module:id}', [ModulesController::class, 'delete'])
+                    ->name('modules.delete');
+            });
+
+
     });

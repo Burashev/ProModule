@@ -43,6 +43,7 @@ class ViewServiceProvider extends ServiceProvider
                 'adminMenu',
                 (new Menu())
                     ->addItem(new MenuItem("Пользователи", route("admin.users")))
+                    ->addItem(new MenuItem("Модули", route("admin.modules")))
             );
         });
     }

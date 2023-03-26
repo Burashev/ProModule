@@ -10,6 +10,7 @@ use Illuminate\Contracts\Filesystem\Filesystem;
 use Illuminate\Http\UploadedFile;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
+use Support\Exceptions\BusinessException;
 use Symfony\Component\HttpFoundation\StreamedResponse;
 
 final class FileManager
@@ -30,7 +31,7 @@ final class FileManager
         $extension = $file->extension();
 
         if (!$this->checkExtension($extension)) {
-            return false;
+            throw new BusinessException('Загрузка файла не удалась');
         }
 
         $type = $file->getMimeType();
@@ -44,7 +45,11 @@ final class FileManager
 
     public function checkExtension(string $extension): bool
     {
-        return in_array($extension, config('file.available_extensions'));
+        if (!in_array($extension, config('file.available_extensions'))) {
+            throw new BusinessException('Данное расширение файла запрещено');
+        }
+
+        return true;
     }
 
     public function createModelRecord($title, $type, $size, $path): File
@@ -65,14 +70,14 @@ final class FileManager
         return $this->getFileLinkUrl($fileLink);
     }
 
-    public function downloadFile(FileLink $fileLink): StreamedResponse|bool
+    public function downloadFile(FileLink $fileLink): StreamedResponse
     {
         if ($fileLink->is_downloaded) {
-            return false;
+            throw new BusinessException('Файл уже был скачан');
         }
 
         if ($this->user->getKey() !== $fileLink->user_id) {
-            return false;
+            throw new BusinessException('Вы не являетесь автором файла');
         }
 
         $fileLink->update([

@@ -21,8 +21,7 @@ class ModuleSeeder extends Seeder
     {
         $user = User::factory()
             ->createOne([
-                'email' => 'shburashev@ya.ru',
-                'password' => bcrypt('12341234'),
+                'email' => 'admin@ya.ru',
                 'role_id' => RolesEnum::ADMINISTRATOR_ID->value
             ]);
 

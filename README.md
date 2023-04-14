@@ -32,24 +32,24 @@ The system has a default users
 **1- Clone:**
 
 ```bash
-$ git clone https://github.com/Burashev/ProModule.git
+git clone https://github.com/Burashev/ProModule.git
 ```
 
 2- **Open project folder:**
 
 ```bash
-$ cd folder
+cd ProModule
 ```
 
 3-  **Add your file** `.env` **:**
 
 ```bash
-$ cp env.example .env
+cp .env.example .env
 ```
 
 The .env.example file has the following basic configurations:
 
-```bash
+```
 DB_CONNECTION=mysql
 DB_HOST=project_db
 DB_PORT=3306
@@ -64,16 +64,17 @@ REDIS_PASSWORD=null
 REDIS_PORT=6379
 ```
 
-4- **Install dependencies:**
+4- **Docker:**
 
 ```bash
-$ docker-compose exec app composer install 
-````
-
-5- **Run this command to run it in docker:**
-
+docker-compose build
+```
 ```bash
-$ docker-compose build
-$ docker-compose up -d
-$ docker-compose exec app php artisan promodule:install # installation artisan command
+docker-compose up -d
+```
+```bash
+docker-compose exec app composer install # installation dependencies
+```
+```bash
+docker-compose exec app php artisan promodule:install # installation artisan command
 ```

@@ -78,3 +78,5 @@ docker-compose exec app composer install # installation dependencies
 ```bash
 docker-compose exec app php artisan promodule:install # installation artisan command
 ```
+
+Open [localhost:1111](http://localhost:1111)

@@ -18,9 +18,9 @@ jobs:
         run: docker-compose up -d
 
       - name: Install dependencies
-        run: docker-compose exec app composer install
+        run: docker-compose exec -T app composer install
       - name: Run installation artisan command
-        run: docker-compose exec app php artisan promodule:install
+        run: docker-compose exec -T app php artisan promodule:install
 
       - name: Run tests
-        run: docker-compose exec app vendor/bin/phpunit
+        run: docker-compose exec -T app vendor/bin/phpunit

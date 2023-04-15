@@ -19,6 +19,10 @@ jobs:
 
       - name: Install dependencies
         run: docker-compose exec -T app composer install
+
+      - name: Wait for MySQL to start
+        run: sleep 15
+
       - name: Run installation artisan command
         run: docker-compose exec -T app php artisan promodule:install
 
